@@ -1,0 +1,50 @@
+{
+  "name": "libnpmdiff",
+  "version": "1.0.0",
+  "description": "The registry diff",
+  "repository": "https://github.com/npm/libnpmdiff",
+  "files": [
+    "index.js"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "keywords": [
+    "npm",
+    "npmcli",
+    "libnpm",
+    "cli",
+    "diff"
+  ],
+  "author": "npm cli team",
+  "contributors": [
+    {
+      "name": "Ruy Adorno",
+      "url": "https://ruyadorno.com",
+      "twitter": "ruyadorno"
+    }
+  ],
+  "license": "ISC",
+  "scripts": {
+    "lint": "standard",
+    "pretest": "npm run lint",
+    "test": "tap test*.js",
+    "snap": "tap test*.js",
+    "preversion": "npm test",
+    "postversion": "npm publish",
+    "prepublishOnly": "git push origin --follow-tags"
+  },
+  "tap": {
+    "check-coverage": true
+  },
+  "standard": {
+    "ignore": [
+      "/tap-snapshots/"
+    ]
+  },
+  "devDependencies": {
+    "standard": "^16.0.3",
+    "tap": "^14.11.0"
+  },
+  "dependencies": {}
+}
