@@ -46,5 +46,14 @@
     "standard": "^16.0.3",
     "tap": "^14.11.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@npmcli/arborist": "^2.0.3",
+    "@npmcli/disparity-colors": "^1.0.1",
+    "binary-extensions": "^2.2.0",
+    "diff": "^5.0.0",
+    "npm-packlist": "^2.1.4",
+    "pacote": "^11.1.14",
+    "read-package-json-fast": "^1.2.1",
+    "tar": "^6.1.0"
+  }
 }
