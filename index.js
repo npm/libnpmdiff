@@ -1,87 +1,13 @@
 const fs = require('fs')
-const { EOL } = require('os')
 const { promisify } = require('util')
 
-const colorizeDiff = require('@npmcli/disparity-colors')
 const Arborist = require('@npmcli/arborist')
-const jsDiff = require('diff')
 const pacote = require('pacote')
 const packlist = require('npm-packlist')
 const rpj = require('read-package-json-fast')
 
-const shouldPrintPatch = require('./lib/should-print-patch.js')
+const formatDiff = require('./lib/format-diff.js')
 const untar = require('./lib/untar.js')
-
-const printDiff = ({ files, opts, refs, versions }) => {
-  for (const filename of files.values()) {
-    const names = {
-      a: `a/${filename}`,
-      b: `b/${filename}`
-    }
-
-    let fileMode = ''
-    const filenames = {
-      a: refs.get(names.a),
-      b: refs.get(names.b)
-    }
-    const contents = {
-      a: filenames.a && filenames.a.content,
-      b: filenames.b && filenames.b.content
-    }
-    const modes = {
-      a: filenames.a && filenames.a.mode,
-      b: filenames.b && filenames.b.mode
-    }
-
-    if (contents.a === contents.b) continue
-
-    let res = ''
-    let headerLength = 0
-    const header = str => {
-      headerLength++
-      res += `${str}${EOL}`
-    }
-
-    // manually build a git diff-compatible header
-    header(`diff --git ${names.a} ${names.b}`)
-    if (modes.a === modes.b) {
-      fileMode = filenames.a.mode
-    } else {
-      if (modes.a && modes.b) {
-        header(`old mode ${modes.a}`)
-        header(`new mode ${modes.b}`)
-      } else if (modes.a && !modes.b) {
-        header(`deleted file mode ${modes.a}`)
-      } else if (!modes.a && modes.b) {
-        header(`new file mode ${modes.b}`)
-      }
-    }
-    header(`index ${versions.a}..${versions.b} ${fileMode}`)
-
-    if (shouldPrintPatch(filename)) {
-      res += jsDiff.createTwoFilesPatch(
-        names.a,
-        names.b,
-        contents.a || '',
-        contents.b || '',
-        '',
-        '',
-        { context: 3 }
-      ).replace(
-        '===================================================================\n',
-        ''
-      )
-      headerLength += 2
-    } else {
-      header(`--- ${names.a}`)
-      header(`+++ ${names.b}`)
-    }
-
-    return opts.color
-      ? colorizeDiff(res, { headerLength })
-      : res
-  }
-}
 
 const readPackageFiles = async ({ files, path, prefix, refs }) => {
   const readFile = promisify(fs.readFile)
@@ -131,7 +57,7 @@ const diffSelf = async (opts = {}) => {
     prefix: 'b/'
   })
 
-  printDiff({
+  formatDiff({
     files,
     opts,
     refs,
@@ -196,7 +122,7 @@ const diffComparison = async (specs, opts = {}) => {
     }
   ], opts)
 
-  printDiff({
+  formatDiff({
     files,
     opts,
     refs,
