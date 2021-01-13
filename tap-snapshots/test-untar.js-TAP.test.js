@@ -5,6 +5,29 @@
  * Make sure to inspect the output below.  Do not ignore changes!
  */
 'use strict'
+exports[`test/untar.js TAP untar package with folders > should have read contents 1`] = `
+module.exports = 'b'
+
+`
+
+exports[`test/untar.js TAP untar package with folders > should return list of filenames 1`] = `
+lib/index.js
+lib/utils/b.js
+package-lock.json
+package.json
+test/index.js
+test/utils/b.js
+`
+
+exports[`test/untar.js TAP untar package with folders > should return map of filenames to its contents 1`] = `
+a/lib/index.js: true
+a/lib/utils/b.js: true
+a/package-lock.json: true
+a/package.json: true
+a/test/index.js: true
+a/test/utils/b.js: true
+`
+
 exports[`test/untar.js TAP untar simple package > should have read contents 1`] = `
 The MIT License (MIT)
 

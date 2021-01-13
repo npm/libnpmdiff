@@ -105,16 +105,7 @@ const readPackageFiles = async ({ files, path, prefix, refs }) => {
 }
 
 const diffSelf = async (opts = {}) => {
-  const files = new Set()
-  const refs = new Map()
   const { prefix: path } = opts
-
-  await readPackageFiles({
-    path,
-    files,
-    refs,
-    prefix: 'b/'
-  })
 
   const { name } = await rpj(`${opts.prefix}/package.json`)
   const aManifest = await pacote.manifest(`${name}@${opts.tag || 'latest'}`, opts)
@@ -125,13 +116,19 @@ const diffSelf = async (opts = {}) => {
   }
 
   const a = await pacote.tarball(aManifest._resolved, opts)
-  await untar({
+  const {
     files,
     refs
-  }, {
-    opts,
+  } = await untar({
     prefix: 'a/',
     item: a
+  }, opts)
+
+  await readPackageFiles({
+    path,
+    files,
+    refs,
+    prefix: 'b/'
   })
 
   printDiff({
@@ -143,8 +140,6 @@ const diffSelf = async (opts = {}) => {
 }
 
 const diffComparison = async (specs, opts = {}) => {
-  const files = new Set()
-  const refs = new Map()
   const { prefix: path } = opts
 
   let aManifest = await pacote.manifest(specs.a, opts)
@@ -187,24 +182,19 @@ const diffComparison = async (specs, opts = {}) => {
 
   // read all files
   // populates `files` and `refs`
-  await Promise.all([
-    untar({
-      files,
-      refs
-    }, {
-      opts,
+  const {
+    files,
+    refs
+  } = untar([
+    {
       prefix: 'a/',
       item: a
-    }),
-    untar({
-      files,
-      refs
-    }, {
-      opts,
+    },
+    {
       prefix: 'b/',
       item: b
-    })
-  ])
+    }
+  ], opts)
 
   printDiff({
     files,
