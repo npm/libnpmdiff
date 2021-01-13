@@ -28,8 +28,8 @@
   "scripts": {
     "lint": "standard",
     "pretest": "npm run lint",
-    "test": "tap test*.js",
-    "snap": "tap test*.js",
+    "test": "tap test/*.js",
+    "snap": "tap test/*.js",
     "preversion": "npm test",
     "postversion": "npm publish",
     "prepublishOnly": "git push origin --follow-tags"
