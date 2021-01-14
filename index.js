@@ -1,34 +1,10 @@
-const fs = require('fs')
-const { promisify } = require('util')
-
 const Arborist = require('@npmcli/arborist')
 const pacote = require('pacote')
-const packlist = require('npm-packlist')
 const rpj = require('read-package-json-fast')
 
 const formatDiff = require('./lib/format-diff.js')
+const readPackageFiles = require('./lib/read-package-files.js')
 const untar = require('./lib/untar.js')
-
-const readPackageFiles = async ({ files, path, prefix, refs }) => {
-  const readFile = promisify(fs.readFile)
-  const stat = promisify(fs.stat)
-  const filenames = await packlist({ path })
-  const read = await Promise.all(
-    filenames.map(filename => Promise.all([
-      filename,
-      readFile(filename, { encoding: 'utf8' }),
-      stat(filename)
-    ]))
-  )
-
-  for (const [filename, content, stat] of read) {
-    files.add(filename)
-    refs.set(`${prefix}${filename}`, {
-      content,
-      mode: stat.mode.toString(8)
-    })
-  }
-}
 
 const diffSelf = async (opts = {}) => {
   const { prefix: path } = opts
