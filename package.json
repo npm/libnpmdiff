@@ -26,8 +26,6 @@
   ],
   "license": "ISC",
   "scripts": {
-    "lint": "standard",
-    "pretest": "npm run lint",
     "test": "tap test/*.js",
     "snap": "tap test/*.js",
     "preversion": "npm test",
@@ -43,7 +41,6 @@
     ]
   },
   "devDependencies": {
-    "standard": "^16.0.3",
     "tap": "^14.11.0"
   },
   "dependencies": {
