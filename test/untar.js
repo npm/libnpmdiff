@@ -45,3 +45,24 @@ t.test('untar package with folders', async t => {
     'should have read contents'
   )
 })
+
+t.test('using --name-only option', async t => {
+  const item =
+    await pacote.tarball(resolve('./test/fixtures/simple-output-2.2.1.tgz'))
+
+  const {
+    files,
+    refs
+  } = await untar({
+    item,
+    prefix: 'a/',
+  }, {
+    nameOnly: true
+  })
+
+  t.matchSnapshot([...files].join('\n'), 'should return list of filenames')
+  t.matchSnapshot(
+    [...refs.entries()].map(([k, v]) => `${k}: ${v.content}`).join('\n'),
+    'should return map of filenames with undefined contents'
+  )
+})

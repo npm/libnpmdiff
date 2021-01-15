@@ -66,3 +66,17 @@ a/index.js: true
 a/package.json: true
 a/README.md: true
 `
+
+exports[`test/untar.js TAP using --name-only option > should return list of filenames 1`] = `
+LICENSE
+index.js
+package.json
+README.md
+`
+
+exports[`test/untar.js TAP using --name-only option > should return map of filenames with undefined contents 1`] = `
+a/LICENSE: undefined
+a/index.js: undefined
+a/package.json: undefined
+a/README.md: undefined
+`
