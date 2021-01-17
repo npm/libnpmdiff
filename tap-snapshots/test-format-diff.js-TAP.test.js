@@ -71,3 +71,11 @@ index v1.0.0..v2.0.0 100644
 +module.exports = "foobar"
 
 `
+
+exports[`test/format-diff.js TAP using --name-only option > should output expected diff result 1`] = `
+foo.js
+bar.js
+lorem.js
+ipsum.js
+
+`

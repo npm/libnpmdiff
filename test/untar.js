@@ -57,7 +57,9 @@ t.test('using --name-only option', async t => {
     item,
     prefix: 'a/',
   }, {
-    nameOnly: true
+    diffOpts: {
+      nameOnly: true
+    }
   })
 
   t.matchSnapshot([...files].join('\n'), 'should return list of filenames')

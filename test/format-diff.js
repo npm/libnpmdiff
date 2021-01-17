@@ -210,3 +210,33 @@ t.test('colored output', t => {
   )
   t.end()
 })
+
+t.test('using --name-only option', t => {
+  const files = new Set([
+    'foo.js',
+    'bar.js',
+    'lorem.js',
+    'ipsum.js',
+  ])
+  const refs = new Map()
+  const versions = {
+    a: '1.0.0',
+    b: '2.0.0'
+  }
+
+  t.matchSnapshot(
+    formatDiff({
+      files,
+      refs,
+      versions,
+      opts: {
+        diffOpts: {
+          nameOnly: true
+        }
+      }
+    }),
+    'should output expected diff result'
+  )
+  t.end()
+})
+
