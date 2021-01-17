@@ -16,3 +16,13 @@ t.test('invalid filenames', t => {
   t.notOk(shouldPrintPatch('/a/b/c/bar.bin'))
   t.end()
 })
+
+t.test('using --text/-a option', t => {
+  const opts = {
+    diffOpts: { text: true },
+  }
+  t.ok(shouldPrintPatch('foo.exe', opts))
+  t.ok(shouldPrintPatch('./foo.jpg', opts))
+  t.ok(shouldPrintPatch('/a/b/c/bar.bin', opts))
+  t.end()
+})
