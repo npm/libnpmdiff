@@ -47,6 +47,22 @@ exports[`test/format-diff.js TAP colored output > should output expected colored
 
 `
 
+exports[`test/format-diff.js TAP diff options > should output expected diff result 1`] = `
+diff --git a/foo.js b/foo.js
+index v1.0.0..v2.0.0 100644
+--- a/foo.js	
++++ b/foo.js	
+@@ -4,4 +4,6 @@
+ const c = "c"
++const d = "d"
+ module.exports = () => a+
+ b+
+-c
++c+
++d
+
+`
+
 exports[`test/format-diff.js TAP format removed file > should output expected removed file diff result 1`] = `
 diff --git a/foo.js b/foo.js
 deleted file mode 100644

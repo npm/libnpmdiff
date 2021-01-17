@@ -272,3 +272,42 @@ t.test('respect --tag-version-prefix option', t => {
   )
   t.end()
 })
+
+t.test('diff options', t => {
+  const files = new Set([
+    'foo.js'
+  ])
+  const refs = new Map(Object.entries({
+    'a/foo.js': {
+      content: '"use strict"\nconst a = "a"\nconst b = "b"\n'
+        + 'const c = "c"\nmodule.exports = () => a+\nb+\nc\n',
+      mode: '100644'
+    },
+    'b/foo.js': {
+      content: '"use strict"\nconst a = "a"\n  const b = "b"\n'
+        + '  const c = "c"\n  const d = "d"\n'
+        + 'module.exports = () => a+\nb+\nc+\nd\n',
+      mode: '100644'
+    }
+  }))
+  const versions = {
+    a: '1.0.0',
+    b: '2.0.0'
+  }
+
+  t.matchSnapshot(
+    formatDiff({
+      files,
+      refs,
+      versions,
+      opts: {
+        diffOpts: {
+          context: 1,
+          ignoreWhitespace: true
+        }
+      }
+    }),
+    'should output expected diff result'
+  )
+  t.end()
+})
