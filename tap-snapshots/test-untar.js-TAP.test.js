@@ -5,6 +5,30 @@
  * Make sure to inspect the output below.  Do not ignore changes!
  */
 'use strict'
+exports[`test/untar.js TAP filter files > should return list of filenames 1`] = `
+LICENSE
+README.md
+`
+
+exports[`test/untar.js TAP filter files > should return map of filenames with valid contents 1`] = `
+a/LICENSE: true
+a/README.md: true
+`
+
+exports[`test/untar.js TAP filter files using glob expressions > should return list of filenames 1`] = `
+lib/index.js
+lib/utils/b.js
+package-lock.json
+test/index.js
+`
+
+exports[`test/untar.js TAP filter files using glob expressions > should return map of filenames with valid contents 1`] = `
+a/lib/index.js: true
+a/lib/utils/b.js: true
+a/package-lock.json: true
+a/test/index.js: true
+`
+
 exports[`test/untar.js TAP untar package with folders > should have read contents 1`] = `
 module.exports = 'b'
 

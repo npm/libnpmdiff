@@ -68,3 +68,79 @@ t.test('using --name-only option', async t => {
     'should return map of filenames with undefined contents'
   )
 })
+
+t.test('filter files', async t => {
+  const item =
+    await pacote.tarball(resolve('./test/fixtures/simple-output-2.2.1.tgz'))
+
+  const {
+    files,
+    refs
+  } = await untar({
+    item,
+    prefix: 'a/'
+  }, {
+    diffOpts: {
+      files: [
+        'LICENSE',
+        'missing-file',
+        'README.md'
+      ]
+    }
+  })
+
+  t.matchSnapshot([...files].join('\n'), 'should return list of filenames')
+  t.matchSnapshot(
+    [...refs.entries()].map(([k, v]) => `${k}: ${!!v.content}`).join('\n'),
+    'should return map of filenames with valid contents'
+  )
+})
+
+t.test('filter files using glob expressions', async t => {
+  const item =
+    await pacote.tarball(resolve('./test/fixtures/archive.tgz'))
+  const cwd = t.testdir({
+    lib: {
+      'index.js': '',
+      utils: {
+        '/b.js': '',
+      }
+    },
+    'package-lock.json': '',
+    'package.json': '',
+    test: {
+      '/index.js': '',
+      utils: {
+        'b.js': ''
+      }
+    }
+  })
+
+  const _cwd = process.cwd()
+  process.chdir(cwd)
+  t.teardown = () => {
+    process.chdir(_cwd)
+  }
+
+  const {
+    files,
+    refs
+  } = await untar({
+    item,
+    prefix: 'a/'
+  }, {
+    diffOpts: {
+      files: [
+        './lib/**',
+        '*-lock.json',
+        'test/*',
+      ]
+    }
+  })
+
+  t.matchSnapshot([...files].join('\n'), 'should return list of filenames')
+  t.matchSnapshot(
+    [...refs.entries()].map(([k, v]) => `${k}: ${!!v.content}`).join('\n'),
+    'should return map of filenames with valid contents'
+  )
+})
