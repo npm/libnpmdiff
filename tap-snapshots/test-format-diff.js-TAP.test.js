@@ -48,10 +48,10 @@ exports[`test/format-diff.js TAP colored output > should output expected colored
 `
 
 exports[`test/format-diff.js TAP diff options > should output expected diff result 1`] = `
-diff --git a/foo.js b/foo.js
+diff --git before/foo.js after/foo.js
 index v1.0.0..v2.0.0 100644
---- a/foo.js	
-+++ b/foo.js	
+--- before/foo.js	
++++ after/foo.js	
 @@ -4,4 +4,6 @@
  const c = "c"
 +const d = "d"

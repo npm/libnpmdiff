@@ -303,7 +303,9 @@ t.test('diff options', t => {
       opts: {
         diffOpts: {
           context: 1,
-          ignoreWhitespace: true
+          ignoreWhitespace: true,
+          srcPrefix: 'before/',
+          dstPrefix: 'after/',
         }
       }
     }),
