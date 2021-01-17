@@ -240,3 +240,35 @@ t.test('using --name-only option', t => {
   t.end()
 })
 
+t.test('respect --tag-version-prefix option', t => {
+  const files = new Set([
+    'foo.js'
+  ])
+  const refs = new Map(Object.entries({
+    'a/foo.js': {
+      content: '"use strict"\nmodule.exports = "foo"\n',
+      mode: '100644'
+    },
+    'b/foo.js': {
+      content: '"use strict"\nmodule.exports = "foobar"\n',
+      mode: '100644'
+    }
+  }))
+  const versions = {
+    a: '1.0.0',
+    b: '2.0.0'
+  }
+
+  t.matchSnapshot(
+    formatDiff({
+      files,
+      refs,
+      versions,
+      opts: {
+        tagVersionPrefix: 'b'
+      }
+    }),
+    'should output expected diff result'
+  )
+  t.end()
+})
