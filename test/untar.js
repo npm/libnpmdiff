@@ -118,9 +118,9 @@ t.test('filter files using glob expressions', async t => {
 
   const _cwd = process.cwd()
   process.chdir(cwd)
-  t.teardown = () => {
+  t.teardown(() => {
     process.chdir(_cwd)
-  }
+  })
 
   const {
     files,
@@ -133,7 +133,7 @@ t.test('filter files using glob expressions', async t => {
       files: [
         './lib/**',
         '*-lock.json',
-        'test/*',
+        'test\\*', // windows-style sep should be normalized
       ]
     }
   })

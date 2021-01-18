@@ -2,14 +2,11 @@ const t = require('tap')
 
 const formatDiff = require('../lib/format-diff.js')
 
-const redactCwd = (path) => {
-  const normalizePath = p => p
-    .replace(/\\+/g, '/')
-    .replace(/\r\n/g, '\n')
-  return normalizePath(path)
-}
+const normalizeWin = (str) => str
+  .replace(/\\+/g, '/')
+  .replace(/\r\n/g, '\n')
 
-t.cleanSnapshot = (str) => redactCwd(str)
+t.cleanSnapshot = (str) => normalizeWin(str)
 
 t.test('format simple diff', t => {
   const files = new Set([
