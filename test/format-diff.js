@@ -343,3 +343,38 @@ t.test('diff options', t => {
   )
   t.end()
 })
+
+t.test('noPrefix', t => {
+  const files = new Set([
+    'foo.js'
+  ])
+  const refs = new Map(Object.entries({
+    'a/foo.js': {
+      content: '"use strict"\nmodule.exports = "foo"\n',
+      mode: '100644'
+    },
+    'b/foo.js': {
+      content: '"use strict"\nmodule.exports = "foobar"\n',
+      mode: '100644'
+    }
+  }))
+  const versions = {
+    a: '1.0.0',
+    b: '2.0.0'
+  }
+
+  t.matchSnapshot(
+    formatDiff({
+      files,
+      refs,
+      versions,
+      opts: {
+        diffOpts: {
+          noPrefix: true,
+        }
+      }
+    }),
+    'should output result with no prefixes'
+  )
+  t.end()
+})

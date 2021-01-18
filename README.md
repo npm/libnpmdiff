@@ -86,6 +86,7 @@ If only spec `a` is provided, then it's going to try and compare that specified 
   - `files <Array<String>>`: If set only prints patches for the files listed in this array (also accepts globs). Defaults to `undefined`.
   - `ignoreWhitespace <Boolean>`: Whether or not should ignore changes in whitespace (very useful to avoid indentation changes extra diff lines). Defaults to `false`.
   - `nameOnly <Boolean>`: Prints only file names and no patch diffs. Defaults to `false`.
+  - `noPrefix <Boolean>`: If true then skips printing any prefixes in filenames. Defaults to `false`.
   - `srcPrefix <String>`: Prefix to be used in the filenames from `a`. Defaults to `a/`.
   - `dstPrefix <String>`: Prefix to be used in the filenames from `b`. Defaults to `b/`.
   - `text <Boolean>`: Should treat all files as text and try to print diff for binary files. Defaults to `false`.

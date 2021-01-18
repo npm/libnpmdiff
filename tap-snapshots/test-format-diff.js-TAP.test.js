@@ -88,7 +88,20 @@ index v1.0.0..v2.0.0 100644
 
 `
 
-exports[`test/format-diff.js TAP nothing to diff > should output expected diff result 1`] = `
+exports[`test/format-diff.js TAP noPrefix > should output result with no prefixes 1`] = `
+diff --git foo.js foo.js
+index v1.0.0..v2.0.0 100644
+Index: foo.js
+--- foo.js	
++++ foo.js	
+@@ -1,2 +1,2 @@
+ "use strict"
+-module.exports = "foo"
++module.exports = "foobar"
+
+`
+
+exports[`test/format-diff.js TAP nothing to diff > should output empty result 1`] = `
 
 `
 
