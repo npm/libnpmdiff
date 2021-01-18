@@ -25,7 +25,6 @@ index v1.0.0..v1.0.1 100644
 -  "version": "1.0.0"
 +  "version": "1.0.1"
  }
-
 `
 
 exports[`test/index.js TAP compare current dir with a given spec no opts > should output diff against cwd files 1`] = `
@@ -48,7 +47,6 @@ index v1.0.0..v1.0.1 100644
 -  "version": "1.0.0"
 +  "version": "1.0.1"
  }
-
 `
 
 exports[`test/index.js TAP compare two diff specs > should output expected diff 1`] = `
@@ -70,5 +68,4 @@ index v1.0.0..v2.0.0 100644
 -  "version": "1.0.0"
 +  "version": "2.0.0"
  }
-
 `

@@ -14,7 +14,6 @@ index v1.0.0..v2.0.0
 @@ -0,0 +1,2 @@
 +"use strict"
 +module.exports = "foo"
-
 `
 
 exports[`test/format-diff.js TAP binary file > should output expected bin file diff result 1`] = `
@@ -22,7 +21,6 @@ diff --git a/foo.jpg b/foo.jpg
 index v1.0.0..v2.0.0 100644
 --- a/foo.jpg
 +++ b/foo.jpg
-
 `
 
 exports[`test/format-diff.js TAP changed file mode > should output expected changed file mode diff result 1`] = `
@@ -32,7 +30,6 @@ new mode 100755
 index v1.0.0..v2.0.0 
 --- a/foo.js
 +++ b/foo.js
-
 `
 
 exports[`test/format-diff.js TAP colored output > should output expected colored diff result 1`] = `
@@ -44,7 +41,6 @@ exports[`test/format-diff.js TAP colored output > should output expected colored
  "use strict"
 [31m-module.exports = "foo"[39m
 [32m+module.exports = "foobar"[39m
-
 `
 
 exports[`test/format-diff.js TAP diff options > should output expected diff result 1`] = `
@@ -60,7 +56,6 @@ index v1.0.0..v2.0.0 100644
 -c
 +c+
 +d
-
 `
 
 exports[`test/format-diff.js TAP format multiple files patch > should output expected result for multiple files 1`] = `
@@ -82,7 +77,6 @@ index v1.0.0..v1.1.1 100644
 -module.exports = () => bar
 +module.exports =
 +  () => bar + "util"
-
 `
 
 exports[`test/format-diff.js TAP format removed file > should output expected removed file diff result 1`] = `
@@ -95,7 +89,6 @@ index v1.0.0..v2.0.0
 -"use strict"
 -module.exports = "foo"
 / No newline at end of file
-
 `
 
 exports[`test/format-diff.js TAP format simple diff > should output expected diff result 1`] = `
@@ -107,7 +100,6 @@ index v1.0.0..v2.0.0 100644
  "use strict"
 -module.exports = "foo"
 +module.exports = "foobar"
-
 `
 
 exports[`test/format-diff.js TAP noPrefix > should output result with no prefixes 1`] = `
@@ -120,7 +112,6 @@ Index: foo.js
  "use strict"
 -module.exports = "foo"
 +module.exports = "foobar"
-
 `
 
 exports[`test/format-diff.js TAP nothing to diff > should output empty result 1`] = `
@@ -136,7 +127,6 @@ index b1.0.0..b2.0.0 100644
  "use strict"
 -module.exports = "foo"
 +module.exports = "foobar"
-
 `
 
 exports[`test/format-diff.js TAP using --name-only option > should output expected diff result 1`] = `
