@@ -61,3 +61,34 @@ t.test('compare current dir with a given spec', async t => {
   t.resolveMatchSnapshot(
     diff({ a }, { prefix: cwd }), 'should output diff against cwd files')
 })
+
+t.test('compare current dir with a given spec no opts', async t => {
+  const path = t.testdir({
+    cwd: {
+      'package.json': JSON.stringify({
+        name: 'a',
+        version: '1.0.0'
+      }),
+      'index.js': 'module.exports =\n  "foo"\n'
+    },
+    diff: {
+      'package.json': JSON.stringify({
+        name: 'a',
+        version: '1.0.1'
+      }),
+      'index.js': 'const bar = "bar"\nmodule.exports =\n  bar\n'
+    }
+  })
+
+  const cwd = resolve(path, 'cwd')
+  const a = `file:${resolve(path, 'diff')}`
+
+  const _cwd = process.cwd()
+  process.chdir(cwd)
+  t.teardown(() => {
+    process.chdir(_cwd)
+  })
+
+  t.resolveMatchSnapshot(
+    diff({ a }), 'should output diff against cwd files')
+})

@@ -74,12 +74,13 @@ Happy hacking!
 
 Fetches the registry tarballs and compare files between a spec `a` and spec `b`. **npm** spec types are usually described in `<pkg-name>@<version>` form but multiple other types are alsos supported, for more info on valid specs take a look at [`npm-package-arg`](https://github.com/npm/npm-package-arg).
 
-If only spec `a` is provided, then it's going to try and compare that specified spec against the current local file system.
+If only spec `a` is provided, then it's going to try and compare that specified spec against the current project directory in the local file system (cwd may be set via `opts.prefix` option).
 
 **Options**:
 
 - `color <Boolean>`: Should add ANSI colors to string output? Defaults to `false`.
 - `tagVersionPrefix <Sring>`: What prefix should be used to define version numbers. Defaults to `v`
+- `prefix <String>`: The path to use as current working directory if trying to read from local file system when using only a single comparison parameter `a`. Defaults to `.`.
 - ...`cache`, `registry` and other common options accepted by [pacote](https://github.com/npm/pacote#options)
 - `diffOpts <Object>`: Object containing extra options on how to format the diff patch output:
   - `context <Number>`: How many lines of code to print before/after each diff. Defaults to `3`.

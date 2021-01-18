@@ -18,6 +18,19 @@ index v1.0.0..v1.0.1 100644
 
 `
 
+exports[`test/index.js TAP compare current dir with a given spec no opts > should output diff against cwd files 1`] = `
+diff --git a/index.js b/index.js
+index v1.0.0..v1.0.1 100644
+--- a/index.js
++++ b/index.js
+@@ -1,2 +1,3 @@
++const bar = "bar"
+ module.exports =
+-  "foo"
++  bar
+
+`
+
 exports[`test/index.js TAP compare two diff specs > should output expected diff 1`] = `
 diff --git a/index.js b/index.js
 index v1.0.0..v2.0.0 100644

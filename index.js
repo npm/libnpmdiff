@@ -3,7 +3,7 @@ const pacote = require('pacote')
 const formatDiff = require('./lib/format-diff.js')
 const untar = require('./lib/untar.js')
 
-const diff = async (specs, opts) => {
+const diff = async (specs, opts = {}) => {
   const { prefix: path } = opts
 
   let aManifest = await pacote.manifest(specs.a, opts)
@@ -14,7 +14,7 @@ const diff = async (specs, opts) => {
   if (!specs.b) {
     bManifest = aManifest
     specs.b = specs.a
-    specs.a = `file:${path}`
+    specs.a = `file:${path || '.'}`
     aManifest = await pacote.manifest(specs.a, opts)
   } else
     bManifest = await pacote.manifest(specs.b, opts)
