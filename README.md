@@ -80,6 +80,7 @@ If only spec `a` is provided, then it's going to try and compare that specified 
 
 - `color <Boolean>`: Should add ANSI colors to string output? Defaults to true.
 - `tagVersionPrefix <Sring>`: What prefix should be used to define version numbers. Defaults to `v`
+- ...`cache`, `registry` and other common options accepted by [pacote](https://github.com/npm/pacote#options)
 - `diffOpts <Object>`: Object containing extra options on how to format the diff patch output:
   - `context <Number>`: How many lines of code to print before/after each diff. Defaults to `3`.
   - `files <Array<String>>`: If set only prints patches for the files listed in this array (also accepts globs). Defaults to `undefined`.
