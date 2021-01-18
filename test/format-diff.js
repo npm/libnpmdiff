@@ -41,6 +41,36 @@ t.test('format simple diff', t => {
   t.end()
 })
 
+t.test('nothing to diff', t => {
+  const files = new Set([
+    'foo.js'
+  ])
+  const refs = new Map(Object.entries({
+    'a/foo.js': {
+      content: '"use strict"\nmodule.exports = "foo"\n',
+      mode: '100644'
+    },
+    'b/foo.js': {
+      content: '"use strict"\nmodule.exports = "foo"\n',
+      mode: '100644'
+    }
+  }))
+  const versions = {
+    a: '1.0.0',
+    b: '1.0.0'
+  }
+
+  t.matchSnapshot(
+    formatDiff({
+      files,
+      refs,
+      versions
+    }),
+    'should output empty result'
+  )
+  t.end()
+})
+
 t.test('format removed file', t => {
   const files = new Set([
     'foo.js'

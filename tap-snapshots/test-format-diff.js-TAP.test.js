@@ -88,6 +88,10 @@ index v1.0.0..v2.0.0 100644
 
 `
 
+exports[`test/format-diff.js TAP nothing to diff > should output expected diff result 1`] = `
+
+`
+
 exports[`test/format-diff.js TAP respect --tag-version-prefix option > should output expected diff result 1`] = `
 diff --git a/foo.js b/foo.js
 index b1.0.0..b2.0.0 100644
