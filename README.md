@@ -78,7 +78,7 @@ If only spec `a` is provided, then it's going to try and compare that specified 
 
 **Options**:
 
-- `color <Boolean>`: Should add ANSI colors to string output? Defaults to true.
+- `color <Boolean>`: Should add ANSI colors to string output? Defaults to `false`.
 - `tagVersionPrefix <Sring>`: What prefix should be used to define version numbers. Defaults to `v`
 - ...`cache`, `registry` and other common options accepted by [pacote](https://github.com/npm/pacote#options)
 - `diffOpts <Object>`: Object containing extra options on how to format the diff patch output:
