@@ -4,7 +4,8 @@
   "description": "The registry diff",
   "repository": "https://github.com/npm/libnpmdiff",
   "files": [
-    "index.js"
+    "index.js",
+    "lib"
   ],
   "engines": {
     "node": ">=10"

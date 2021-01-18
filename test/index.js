@@ -13,17 +13,19 @@ const redactCwd = (path) => {
 
 t.cleanSnapshot = (str) => redactCwd(str)
 
+const json = (obj) => `${JSON.stringify(obj, null, 2)}\n`
+
 t.test('compare two diff specs', async t => {
   const path = t.testdir({
     a1: {
-      'package.json': JSON.stringify({
+      'package.json': json({
         name: 'a',
         version: '1.0.0'
       }),
       'index.js': 'module.exports =\n  "a1"\n'
     },
     a2: {
-      'package.json': JSON.stringify({
+      'package.json': json({
         name: 'a',
         version: '2.0.0'
       }),
@@ -40,14 +42,14 @@ t.test('compare two diff specs', async t => {
 t.test('compare current dir with a given spec', async t => {
   const path = t.testdir({
     cwd: {
-      'package.json': JSON.stringify({
+      'package.json': json({
         name: 'a',
         version: '1.0.0'
       }),
       'index.js': 'module.exports =\n  "foo"\n'
     },
     diff: {
-      'package.json': JSON.stringify({
+      'package.json': json({
         name: 'a',
         version: '1.0.1'
       }),
@@ -65,14 +67,14 @@ t.test('compare current dir with a given spec', async t => {
 t.test('compare current dir with a given spec no opts', async t => {
   const path = t.testdir({
     cwd: {
-      'package.json': JSON.stringify({
+      'package.json': json({
         name: 'a',
         version: '1.0.0'
       }),
       'index.js': 'module.exports =\n  "foo"\n'
     },
     diff: {
-      'package.json': JSON.stringify({
+      'package.json': json({
         name: 'a',
         version: '1.0.1'
       }),

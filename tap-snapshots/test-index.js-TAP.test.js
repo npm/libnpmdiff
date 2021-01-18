@@ -15,6 +15,15 @@ index v1.0.0..v1.0.1 100644
  module.exports =
 -  "foo"
 +  bar
+diff --git a/package.json b/package.json
+index v1.0.0..v1.0.1 100644
+--- a/package.json
++++ b/package.json
+@@ -1,1 +1,1 @@
+-{"name":"a","version":"1.0.0"}
+/ No newline at end of file
++{"name":"a","version":"1.0.1"}
+/ No newline at end of file
 
 `
 
@@ -28,6 +37,15 @@ index v1.0.0..v1.0.1 100644
  module.exports =
 -  "foo"
 +  bar
+diff --git a/package.json b/package.json
+index v1.0.0..v1.0.1 100644
+--- a/package.json
++++ b/package.json
+@@ -1,1 +1,1 @@
+-{"name":"a","version":"1.0.0"}
+/ No newline at end of file
++{"name":"a","version":"1.0.1"}
+/ No newline at end of file
 
 `
 
@@ -40,5 +58,14 @@ index v1.0.0..v2.0.0 100644
  module.exports =
 -  "a1"
 +  "a2"
+diff --git a/package.json b/package.json
+index v1.0.0..v2.0.0 100644
+--- a/package.json
++++ b/package.json
+@@ -1,1 +1,1 @@
+-{"name":"a","version":"1.0.0"}
+/ No newline at end of file
++{"name":"a","version":"2.0.0"}
+/ No newline at end of file
 
 `

@@ -63,6 +63,28 @@ index v1.0.0..v2.0.0 100644
 
 `
 
+exports[`test/format-diff.js TAP format multiple files patch > should output expected result for multiple files 1`] = `
+diff --git a/foo.js b/foo.js
+index v1.0.0..v1.1.1 100644
+--- a/foo.js
++++ b/foo.js
+@@ -1,2 +1,2 @@
+ "use strict"
+-module.exports = "foo"
++module.exports = "foobar"
+diff --git a/lib/utils.js b/lib/utils.js
+index v1.0.0..v1.1.1 100644
+--- a/lib/utils.js
++++ b/lib/utils.js
+@@ -1,3 +1,4 @@
+ "use strict"
+ const bar = require("./bar.js")
+-module.exports = () => bar
++module.exports =
++  () => bar + "util"
+
+`
+
 exports[`test/format-diff.js TAP format removed file > should output expected removed file diff result 1`] = `
 diff --git a/foo.js b/foo.js
 deleted file mode 100644
