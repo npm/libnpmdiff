@@ -9,8 +9,8 @@ exports[`test/format-diff.js TAP added file > should output expected added file 
 diff --git a/foo.js b/foo.js
 new file mode 100755
 index v1.0.0..v2.0.0 
---- a/foo.js	
-+++ b/foo.js	
+--- a/foo.js
++++ b/foo.js
 @@ -0,0 +1,2 @@
 +"use strict"
 +module.exports = "foo"
@@ -30,16 +30,16 @@ diff --git a/foo.js b/foo.js
 old mode 100644
 new mode 100755
 index v1.0.0..v2.0.0 
---- a/foo.js	
-+++ b/foo.js	
+--- a/foo.js
++++ b/foo.js
 
 `
 
 exports[`test/format-diff.js TAP colored output > should output expected colored diff result 1`] = `
 [33mdiff --git a/foo.js b/foo.js[39m
 [33mindex v1.0.0..v2.0.0 100644[39m
-[33m--- a/foo.js	[39m
-[33m+++ b/foo.js	[39m
+[33m--- a/foo.js[39m
+[33m+++ b/foo.js[39m
 [35m@@ -1,2 +1,2 @@[39m
  "use strict"
 [31m-module.exports = "foo"[39m
@@ -50,8 +50,8 @@ exports[`test/format-diff.js TAP colored output > should output expected colored
 exports[`test/format-diff.js TAP diff options > should output expected diff result 1`] = `
 diff --git before/foo.js after/foo.js
 index v1.0.0..v2.0.0 100644
---- before/foo.js	
-+++ after/foo.js	
+--- before/foo.js
++++ after/foo.js
 @@ -4,4 +4,6 @@
  const c = "c"
 +const d = "d"
@@ -67,8 +67,8 @@ exports[`test/format-diff.js TAP format removed file > should output expected re
 diff --git a/foo.js b/foo.js
 deleted file mode 100644
 index v1.0.0..v2.0.0 
---- a/foo.js	
-+++ b/foo.js	
+--- a/foo.js
++++ b/foo.js
 @@ -1,2 +0,0 @@
 -"use strict"
 -module.exports = "foo"
@@ -79,8 +79,8 @@ index v1.0.0..v2.0.0
 exports[`test/format-diff.js TAP format simple diff > should output expected diff result 1`] = `
 diff --git a/foo.js b/foo.js
 index v1.0.0..v2.0.0 100644
---- a/foo.js	
-+++ b/foo.js	
+--- a/foo.js
++++ b/foo.js
 @@ -1,2 +1,2 @@
  "use strict"
 -module.exports = "foo"
@@ -92,8 +92,8 @@ exports[`test/format-diff.js TAP noPrefix > should output result with no prefixe
 diff --git foo.js foo.js
 index v1.0.0..v2.0.0 100644
 Index: foo.js
---- foo.js	
-+++ foo.js	
+--- foo.js
++++ foo.js
 @@ -1,2 +1,2 @@
  "use strict"
 -module.exports = "foo"
@@ -108,8 +108,8 @@ exports[`test/format-diff.js TAP nothing to diff > should output empty result 1`
 exports[`test/format-diff.js TAP respect --tag-version-prefix option > should output expected diff result 1`] = `
 diff --git a/foo.js b/foo.js
 index b1.0.0..b2.0.0 100644
---- a/foo.js	
-+++ b/foo.js	
+--- a/foo.js
++++ b/foo.js
 @@ -1,2 +1,2 @@
  "use strict"
 -module.exports = "foo"

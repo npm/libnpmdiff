@@ -5,7 +5,7 @@
 [![GitHub Actions](https://github.com/npm/libnpmdiff/workflows/node-ci/badge.svg)](https://github.com/npm/libnpmdiff/actions?query=workflow%3Anode-ci)
 [![Coverage Status](https://coveralls.io/repos/github/npm/libnpmdiff/badge.svg?branch=main)](https://coveralls.io/github/npm/libnpmdiff?branch=main)
 
-[`libnpmdiff`](https://github.com/npm/libnpmdiff) The registry diff lib.
+The registry diff lib.
 
 ## Table of Contents
 
