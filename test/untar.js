@@ -3,7 +3,7 @@ const t = require('tap')
 const pacote = require('pacote')
 const untar = require('../lib/untar.js')
 
-t.test('untar simple package', async t => {
+t.only('untar simple package', async t => {
   const item =
     await pacote.tarball(resolve('./test/fixtures/simple-output-2.2.1.tgz'))
 
@@ -82,7 +82,7 @@ t.test('filter files', async t => {
   }, {
     diffOpts: {
       files: [
-        'LICENSE',
+        './LICENSE',
         'missing-file',
         'README.md'
       ]
@@ -143,4 +143,26 @@ t.test('filter files using glob expressions', async t => {
     [...refs.entries()].map(([k, v]) => `${k}: ${!!v.content}`).join('\n'),
     'should return map of filenames with valid contents'
   )
+})
+
+t.test('filter out all files', async t => {
+  const item =
+    await pacote.tarball(resolve('./test/fixtures/simple-output-2.2.1.tgz'))
+
+  const {
+    files,
+    refs
+  } = await untar({
+    item,
+    prefix: 'a/'
+  }, {
+    diffOpts: {
+      files: [
+        'non-matching-pattern',
+      ]
+    }
+  })
+
+  t.equal(files.size, 0, 'should have no files')
+  t.equal(refs.size, 0, 'should have no refs')
 })
