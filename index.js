@@ -6,15 +6,14 @@ const untar = require('./lib/untar.js')
 const diff = async (specs, opts = {}) => {
   const { prefix: path } = opts
 
-  let aManifest = await pacote.manifest(specs.a, opts)
-  let bManifest
+  const aManifest = await pacote.manifest(specs.a, opts)
 
   // when using a single argument the spec to compare from is going to be
   // figured out from reading the current location package
   if (!specs.b)
     specs.b = `file:${path || '.'}`
 
-  bManifest = await pacote.manifest(specs.b, opts)
+  const bManifest = await pacote.manifest(specs.b, opts)
 
   const versions = {
     a: aManifest.version,

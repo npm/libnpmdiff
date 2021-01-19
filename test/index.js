@@ -20,17 +20,17 @@ t.test('compare two diff specs', async t => {
     a1: {
       'package.json': json({
         name: 'a',
-        version: '1.0.0'
+        version: '1.0.0',
       }),
-      'index.js': 'module.exports =\n  "a1"\n'
+      'index.js': 'module.exports =\n  "a1"\n',
     },
     a2: {
       'package.json': json({
         name: 'a',
-        version: '2.0.0'
+        version: '2.0.0',
       }),
-      'index.js': 'module.exports =\n  "a2"\n'
-    }
+      'index.js': 'module.exports =\n  "a2"\n',
+    },
   })
 
   const a = `file:${resolve(path, 'a1')}`
@@ -44,17 +44,17 @@ t.test('compare current dir with a given spec', async t => {
     cwd: {
       'package.json': json({
         name: 'a',
-        version: '1.0.0'
+        version: '1.0.0',
       }),
-      'index.js': 'module.exports =\n  "foo"\n'
+      'index.js': 'module.exports =\n  "foo"\n',
     },
     diff: {
       'package.json': json({
         name: 'a',
-        version: '1.0.1'
+        version: '1.0.1',
       }),
-      'index.js': 'const bar = "bar"\nmodule.exports =\n  bar\n'
-    }
+      'index.js': 'const bar = "bar"\nmodule.exports =\n  bar\n',
+    },
   })
 
   const cwd = resolve(path, 'cwd')
@@ -69,17 +69,17 @@ t.test('compare current dir with a given spec no opts', async t => {
     cwd: {
       'package.json': json({
         name: 'a',
-        version: '1.0.0'
+        version: '1.0.0',
       }),
-      'index.js': 'module.exports =\n  "foo"\n'
+      'index.js': 'module.exports =\n  "foo"\n',
     },
     diff: {
       'package.json': json({
         name: 'a',
-        version: '1.0.1'
+        version: '1.0.1',
       }),
-      'index.js': 'const bar = "bar"\nmodule.exports =\n  bar\n'
-    }
+      'index.js': 'const bar = "bar"\nmodule.exports =\n  bar\n',
+    },
   })
 
   const cwd = resolve(path, 'cwd')

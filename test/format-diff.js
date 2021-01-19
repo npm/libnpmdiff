@@ -10,28 +10,28 @@ t.cleanSnapshot = (str) => normalizeWin(str)
 
 t.test('format simple diff', t => {
   const files = new Set([
-    'foo.js'
+    'foo.js',
   ])
   const refs = new Map(Object.entries({
     'a/foo.js': {
       content: '"use strict"\nmodule.exports = "foo"\n',
-      mode: '100644'
+      mode: '100644',
     },
     'b/foo.js': {
       content: '"use strict"\nmodule.exports = "foobar"\n',
-      mode: '100644'
-    }
+      mode: '100644',
+    },
   }))
   const versions = {
     a: '1.0.0',
-    b: '2.0.0'
+    b: '2.0.0',
   }
 
   t.matchSnapshot(
     formatDiff({
       files,
       refs,
-      versions
+      versions,
     }),
     'should output expected diff result'
   )
@@ -40,28 +40,28 @@ t.test('format simple diff', t => {
 
 t.test('nothing to diff', t => {
   const files = new Set([
-    'foo.js'
+    'foo.js',
   ])
   const refs = new Map(Object.entries({
     'a/foo.js': {
       content: '"use strict"\nmodule.exports = "foo"\n',
-      mode: '100644'
+      mode: '100644',
     },
     'b/foo.js': {
       content: '"use strict"\nmodule.exports = "foo"\n',
-      mode: '100644'
-    }
+      mode: '100644',
+    },
   }))
   const versions = {
     a: '1.0.0',
-    b: '1.0.0'
+    b: '1.0.0',
   }
 
   t.matchSnapshot(
     formatDiff({
       files,
       refs,
-      versions
+      versions,
     }),
     'should output empty result'
   )
@@ -70,24 +70,24 @@ t.test('nothing to diff', t => {
 
 t.test('format removed file', t => {
   const files = new Set([
-    'foo.js'
+    'foo.js',
   ])
   const refs = new Map(Object.entries({
     'a/foo.js': {
       content: '"use strict"\nmodule.exports = "foo"\n',
-      mode: '100644'
-    }
+      mode: '100644',
+    },
   }))
   const versions = {
     a: '1.0.0',
-    b: '2.0.0'
+    b: '2.0.0',
   }
 
   t.matchSnapshot(
     formatDiff({
       files,
       refs,
-      versions
+      versions,
     }),
     'should output expected removed file diff result'
   )
@@ -96,28 +96,28 @@ t.test('format removed file', t => {
 
 t.test('changed file mode', t => {
   const files = new Set([
-    'foo.js'
+    'foo.js',
   ])
   const refs = new Map(Object.entries({
     'a/foo.js': {
       content: '"use strict"\nmodule.exports = "foo"\n',
-      mode: '100644'
+      mode: '100644',
     },
     'b/foo.js': {
       content: '"use strict"\nmodule.exports = "foo"\n',
-      mode: '100755'
-    }
+      mode: '100755',
+    },
   }))
   const versions = {
     a: '1.0.0',
-    b: '2.0.0'
+    b: '2.0.0',
   }
 
   t.matchSnapshot(
     formatDiff({
       files,
       refs,
-      versions
+      versions,
     }),
     'should output expected changed file mode diff result'
   )
@@ -126,24 +126,24 @@ t.test('changed file mode', t => {
 
 t.test('added file', t => {
   const files = new Set([
-    'foo.js'
+    'foo.js',
   ])
   const refs = new Map(Object.entries({
     'b/foo.js': {
       content: '"use strict"\nmodule.exports = "foo"\n',
-      mode: '100755'
-    }
+      mode: '100755',
+    },
   }))
   const versions = {
     a: '1.0.0',
-    b: '2.0.0'
+    b: '2.0.0',
   }
 
   t.matchSnapshot(
     formatDiff({
       files,
       refs,
-      versions
+      versions,
     }),
     'should output expected added file diff result'
   )
@@ -152,28 +152,28 @@ t.test('added file', t => {
 
 t.test('binary file', t => {
   const files = new Set([
-    'foo.jpg'
+    'foo.jpg',
   ])
   const refs = new Map(Object.entries({
     'a/foo.jpg': {
       content: Buffer.from(''),
-      mode: '100644'
+      mode: '100644',
     },
     'b/foo.jpg': {
       content: Buffer.from(''),
-      mode: '100644'
-    }
+      mode: '100644',
+    },
   }))
   const versions = {
     a: '1.0.0',
-    b: '2.0.0'
+    b: '2.0.0',
   }
 
   t.matchSnapshot(
     formatDiff({
       files,
       refs,
-      versions
+      versions,
     }),
     'should output expected bin file diff result'
   )
@@ -182,22 +182,22 @@ t.test('binary file', t => {
 
 t.test('nothing to compare', t => {
   const files = new Set([
-    'foo.jpg'
+    'foo.jpg',
   ])
   const refs = new Map(Object.entries({
     'a/foo.jpg': {},
-    'b/foo.jpg': {}
+    'b/foo.jpg': {},
   }))
   const versions = {
     a: '1.0.0',
-    b: '2.0.0'
+    b: '2.0.0',
   }
 
   t.equal(
     formatDiff({
       files,
       refs,
-      versions
+      versions,
     }),
     '',
     'should have no output'
@@ -207,21 +207,21 @@ t.test('nothing to compare', t => {
 
 t.test('colored output', t => {
   const files = new Set([
-    'foo.js'
+    'foo.js',
   ])
   const refs = new Map(Object.entries({
     'a/foo.js': {
       content: '"use strict"\nmodule.exports = "foo"\n',
-      mode: '100644'
+      mode: '100644',
     },
     'b/foo.js': {
       content: '"use strict"\nmodule.exports = "foobar"\n',
-      mode: '100644'
-    }
+      mode: '100644',
+    },
   }))
   const versions = {
     a: '1.0.0',
-    b: '2.0.0'
+    b: '2.0.0',
   }
 
   t.matchSnapshot(
@@ -230,8 +230,8 @@ t.test('colored output', t => {
       refs,
       versions,
       opts: {
-        color: true
-      }
+        color: true,
+      },
     }),
     'should output expected colored diff result'
   )
@@ -248,7 +248,7 @@ t.test('using --name-only option', t => {
   const refs = new Map()
   const versions = {
     a: '1.0.0',
-    b: '2.0.0'
+    b: '2.0.0',
   }
 
   t.matchSnapshot(
@@ -258,9 +258,9 @@ t.test('using --name-only option', t => {
       versions,
       opts: {
         diffOpts: {
-          nameOnly: true
-        }
-      }
+          nameOnly: true,
+        },
+      },
     }),
     'should output expected diff result'
   )
@@ -269,21 +269,21 @@ t.test('using --name-only option', t => {
 
 t.test('respect --tag-version-prefix option', t => {
   const files = new Set([
-    'foo.js'
+    'foo.js',
   ])
   const refs = new Map(Object.entries({
     'a/foo.js': {
       content: '"use strict"\nmodule.exports = "foo"\n',
-      mode: '100644'
+      mode: '100644',
     },
     'b/foo.js': {
       content: '"use strict"\nmodule.exports = "foobar"\n',
-      mode: '100644'
-    }
+      mode: '100644',
+    },
   }))
   const versions = {
     a: '1.0.0',
-    b: '2.0.0'
+    b: '2.0.0',
   }
 
   t.matchSnapshot(
@@ -292,8 +292,8 @@ t.test('respect --tag-version-prefix option', t => {
       refs,
       versions,
       opts: {
-        tagVersionPrefix: 'b'
-      }
+        tagVersionPrefix: 'b',
+      },
     }),
     'should output expected diff result'
   )
@@ -302,24 +302,24 @@ t.test('respect --tag-version-prefix option', t => {
 
 t.test('diff options', t => {
   const files = new Set([
-    'foo.js'
+    'foo.js',
   ])
   const refs = new Map(Object.entries({
     'a/foo.js': {
       content: '"use strict"\nconst a = "a"\nconst b = "b"\n'
         + 'const c = "c"\nmodule.exports = () => a+\nb+\nc\n',
-      mode: '100644'
+      mode: '100644',
     },
     'b/foo.js': {
       content: '"use strict"\nconst a = "a"\n  const b = "b"\n'
         + '  const c = "c"\n  const d = "d"\n'
         + 'module.exports = () => a+\nb+\nc+\nd\n',
-      mode: '100644'
-    }
+      mode: '100644',
+    },
   }))
   const versions = {
     a: '1.0.0',
-    b: '2.0.0'
+    b: '2.0.0',
   }
 
   t.matchSnapshot(
@@ -333,8 +333,8 @@ t.test('diff options', t => {
           ignoreWhitespace: true,
           srcPrefix: 'before/',
           dstPrefix: 'after/',
-        }
-      }
+        },
+      },
     }),
     'should output expected diff result'
   )
@@ -343,21 +343,21 @@ t.test('diff options', t => {
 
 t.test('noPrefix', t => {
   const files = new Set([
-    'foo.js'
+    'foo.js',
   ])
   const refs = new Map(Object.entries({
     'a/foo.js': {
       content: '"use strict"\nmodule.exports = "foo"\n',
-      mode: '100644'
+      mode: '100644',
     },
     'b/foo.js': {
       content: '"use strict"\nmodule.exports = "foobar"\n',
-      mode: '100644'
-    }
+      mode: '100644',
+    },
   }))
   const versions = {
     a: '1.0.0',
-    b: '2.0.0'
+    b: '2.0.0',
   }
 
   t.matchSnapshot(
@@ -368,8 +368,8 @@ t.test('noPrefix', t => {
       opts: {
         diffOpts: {
           noPrefix: true,
-        }
-      }
+        },
+      },
     }),
     'should output result with no prefixes'
   )
@@ -385,44 +385,43 @@ t.test('format multiple files patch', t => {
   const refs = new Map(Object.entries({
     'a/foo.js': {
       content: '"use strict"\nmodule.exports = "foo"\n',
-      mode: '100644'
+      mode: '100644',
     },
     'b/foo.js': {
       content: '"use strict"\nmodule.exports = "foobar"\n',
-      mode: '100644'
+      mode: '100644',
     },
     'a/lib/bar.js': {
       content: '"use strict"\nmodule.exports = "bar"\n',
-      mode: '100644'
+      mode: '100644',
     },
     'b/lib/bar.js': {
       content: '"use strict"\nmodule.exports = "bar"\n',
-      mode: '100644'
+      mode: '100644',
     },
     'a/lib/utils.js': {
       content: '"use strict"\nconst bar = require("./bar.js")\n'
         + 'module.exports = () => bar\n',
-      mode: '100644'
+      mode: '100644',
     },
     'b/lib/utils.js': {
       content: '"use strict"\nconst bar = require("./bar.js")\n'
         + 'module.exports =\n  () => bar + "util"\n',
-      mode: '100644'
+      mode: '100644',
     },
   }))
   const versions = {
     a: '1.0.0',
-    b: '1.1.1'
+    b: '1.1.1',
   }
 
   t.matchSnapshot(
     formatDiff({
       files,
       refs,
-      versions
+      versions,
     }),
     'should output expected result for multiple files'
   )
   t.end()
 })
-

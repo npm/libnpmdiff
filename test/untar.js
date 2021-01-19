@@ -9,10 +9,10 @@ t.only('untar simple package', async t => {
 
   const {
     files,
-    refs
+    refs,
   } = await untar({
     item,
-    prefix: 'a/'
+    prefix: 'a/',
   })
 
   t.matchSnapshot([...files].join('\n'), 'should return list of filenames')
@@ -29,10 +29,10 @@ t.test('untar package with folders', async t => {
 
   const {
     files,
-    refs
+    refs,
   } = await untar({
     item,
-    prefix: 'a/'
+    prefix: 'a/',
   })
 
   t.matchSnapshot([...files].join('\n'), 'should return list of filenames')
@@ -52,14 +52,14 @@ t.test('using --name-only option', async t => {
 
   const {
     files,
-    refs
+    refs,
   } = await untar({
     item,
     prefix: 'a/',
   }, {
     diffOpts: {
-      nameOnly: true
-    }
+      nameOnly: true,
+    },
   })
 
   t.matchSnapshot([...files].join('\n'), 'should return list of filenames')
@@ -75,18 +75,18 @@ t.test('filter files', async t => {
 
   const {
     files,
-    refs
+    refs,
   } = await untar({
     item,
-    prefix: 'a/'
+    prefix: 'a/',
   }, {
     diffOpts: {
       files: [
         './LICENSE',
         'missing-file',
-        'README.md'
-      ]
-    }
+        'README.md',
+      ],
+    },
   })
 
   t.matchSnapshot([...files].join('\n'), 'should return list of filenames')
@@ -104,16 +104,16 @@ t.test('filter files using glob expressions', async t => {
       'index.js': '',
       utils: {
         '/b.js': '',
-      }
+      },
     },
     'package-lock.json': '',
     'package.json': '',
     test: {
       '/index.js': '',
       utils: {
-        'b.js': ''
-      }
-    }
+        'b.js': '',
+      },
+    },
   })
 
   const _cwd = process.cwd()
@@ -124,18 +124,18 @@ t.test('filter files using glob expressions', async t => {
 
   const {
     files,
-    refs
+    refs,
   } = await untar({
     item,
-    prefix: 'a/'
+    prefix: 'a/',
   }, {
     diffOpts: {
       files: [
         './lib/**',
         '*-lock.json',
         'test\\*', // windows-style sep should be normalized
-      ]
-    }
+      ],
+    },
   })
 
   t.matchSnapshot([...files].join('\n'), 'should return list of filenames')
@@ -151,16 +151,16 @@ t.test('filter out all files', async t => {
 
   const {
     files,
-    refs
+    refs,
   } = await untar({
     item,
-    prefix: 'a/'
+    prefix: 'a/',
   }, {
     diffOpts: {
       files: [
         'non-matching-pattern',
-      ]
-    }
+      ],
+    },
   })
 
   t.equal(files.size, 0, 'should have no files')
