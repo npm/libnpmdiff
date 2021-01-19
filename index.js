@@ -11,13 +11,10 @@ const diff = async (specs, opts = {}) => {
 
   // when using a single argument the spec to compare from is going to be
   // figured out from reading the current location package
-  if (!specs.b) {
-    bManifest = aManifest
-    specs.b = specs.a
-    specs.a = `file:${path || '.'}`
-    aManifest = await pacote.manifest(specs.a, opts)
-  } else
-    bManifest = await pacote.manifest(specs.b, opts)
+  if (!specs.b)
+    specs.b = `file:${path || '.'}`
+
+  bManifest = await pacote.manifest(specs.b, opts)
 
   const versions = {
     a: aManifest.version,

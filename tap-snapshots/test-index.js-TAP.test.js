@@ -7,45 +7,45 @@
 'use strict'
 exports[`test/index.js TAP compare current dir with a given spec > should output diff against cwd files 1`] = `
 diff --git a/index.js b/index.js
-index v1.0.0..v1.0.1 100644
+index v1.0.1..v1.0.0 100644
 --- a/index.js
 +++ b/index.js
-@@ -1,2 +1,3 @@
-+const bar = "bar"
+@@ -1,3 +1,2 @@
+-const bar = "bar"
  module.exports =
--  "foo"
-+  bar
+-  bar
++  "foo"
 diff --git a/package.json b/package.json
-index v1.0.0..v1.0.1 100644
+index v1.0.1..v1.0.0 100644
 --- a/package.json
 +++ b/package.json
 @@ -1,4 +1,4 @@
  {
    "name": "a",
--  "version": "1.0.0"
-+  "version": "1.0.1"
+-  "version": "1.0.1"
++  "version": "1.0.0"
  }
 `
 
 exports[`test/index.js TAP compare current dir with a given spec no opts > should output diff against cwd files 1`] = `
 diff --git a/index.js b/index.js
-index v1.0.0..v1.0.1 100644
+index v1.0.1..v1.0.0 100644
 --- a/index.js
 +++ b/index.js
-@@ -1,2 +1,3 @@
-+const bar = "bar"
+@@ -1,3 +1,2 @@
+-const bar = "bar"
  module.exports =
--  "foo"
-+  bar
+-  bar
++  "foo"
 diff --git a/package.json b/package.json
-index v1.0.0..v1.0.1 100644
+index v1.0.1..v1.0.0 100644
 --- a/package.json
 +++ b/package.json
 @@ -1,4 +1,4 @@
  {
    "name": "a",
--  "version": "1.0.0"
-+  "version": "1.0.1"
+-  "version": "1.0.1"
++  "version": "1.0.0"
  }
 `
 
