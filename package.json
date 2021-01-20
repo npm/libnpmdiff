@@ -1,6 +1,6 @@
 {
   "name": "libnpmdiff",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The registry diff",
   "repository": "https://github.com/npm/libnpmdiff",
   "files": [
