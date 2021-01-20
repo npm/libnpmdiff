@@ -131,8 +131,5 @@ index b1.0.0..b2.0.0 100644
 
 exports[`test/format-diff.js TAP using --name-only option > should output expected diff result 1`] = `
 foo.js
-bar.js
-lorem.js
-ipsum.js
-
+lib/utils.js
 `

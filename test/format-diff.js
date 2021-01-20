@@ -241,11 +241,37 @@ t.test('colored output', t => {
 t.test('using --name-only option', t => {
   const files = new Set([
     'foo.js',
-    'bar.js',
-    'lorem.js',
-    'ipsum.js',
+    'lib/bar.js',
+    'lib/utils.js',
   ])
-  const refs = new Map()
+  const refs = new Map(Object.entries({
+    'a/foo.js': {
+      content: '"use strict"\nmodule.exports = "foo"\n',
+      mode: '100644',
+    },
+    'b/foo.js': {
+      content: '"use strict"\nmodule.exports = "foobar"\n',
+      mode: '100644',
+    },
+    'a/lib/bar.js': {
+      content: '"use strict"\nmodule.exports = "bar"\n',
+      mode: '100644',
+    },
+    'b/lib/bar.js': {
+      content: '"use strict"\nmodule.exports = "bar"\n',
+      mode: '100644',
+    },
+    'a/lib/utils.js': {
+      content: '"use strict"\nconst bar = require("./bar.js")\n'
+        + 'module.exports = () => bar\n',
+      mode: '100644',
+    },
+    'b/lib/utils.js': {
+      content: '"use strict"\nconst bar = require("./bar.js")\n'
+        + 'module.exports =\n  () => bar + "util"\n',
+      mode: '100644',
+    },
+  }))
   const versions = {
     a: '1.0.0',
     b: '2.0.0',
