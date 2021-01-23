@@ -283,9 +283,7 @@ t.test('using --name-only option', t => {
       refs,
       versions,
       opts: {
-        diffOpts: {
-          nameOnly: true,
-        },
+        diffNameOnly: true,
       },
     }),
     'should output expected diff result'
@@ -354,12 +352,10 @@ t.test('diff options', t => {
       refs,
       versions,
       opts: {
-        diffOpts: {
-          context: 1,
-          ignoreWhitespace: true,
-          srcPrefix: 'before/',
-          dstPrefix: 'after/',
-        },
+        diffContext: 1,
+        diffIgnoreWhitespace: true,
+        diffSrcPrefix: 'before/',
+        diffDstPrefix: 'after/',
       },
     }),
     'should output expected diff result'
@@ -392,9 +388,7 @@ t.test('noPrefix', t => {
       refs,
       versions,
       opts: {
-        diffOpts: {
-          noPrefix: true,
-        },
+        diffNoPrefix: true,
       },
     }),
     'should output result with no prefixes'

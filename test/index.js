@@ -36,61 +36,22 @@ t.test('compare two diff specs', async t => {
   const a = `file:${resolve(path, 'a1')}`
   const b = `file:${resolve(path, 'a2')}`
 
-  t.resolveMatchSnapshot(diff({ a, b }, {}), 'should output expected diff')
+  t.resolveMatchSnapshot(diff([a, b], {}), 'should output expected diff')
 })
 
-t.test('compare current dir with a given spec', async t => {
-  const path = t.testdir({
-    cwd: {
-      'package.json': json({
-        name: 'a',
-        version: '1.0.0',
-      }),
-      'index.js': 'module.exports =\n  "foo"\n',
-    },
-    diff: {
-      'package.json': json({
-        name: 'a',
-        version: '1.0.1',
-      }),
-      'index.js': 'const bar = "bar"\nmodule.exports =\n  bar\n',
-    },
-  })
-
-  const cwd = resolve(path, 'cwd')
-  const a = `file:${resolve(path, 'diff')}`
-
-  t.resolveMatchSnapshot(
-    diff({ a }, { prefix: cwd }), 'should output diff against cwd files')
+t.test('using single arg', async t => {
+  await t.rejects(
+    diff(['abbrev@1.0.3']),
+    /libnpmdiff needs two arguments to compare/,
+    'should throw EDIFFARGS error'
+  )
 })
 
-t.test('compare current dir with a given spec no opts', async t => {
-  const path = t.testdir({
-    cwd: {
-      'package.json': json({
-        name: 'a',
-        version: '1.0.0',
-      }),
-      'index.js': 'module.exports =\n  "foo"\n',
-    },
-    diff: {
-      'package.json': json({
-        name: 'a',
-        version: '1.0.1',
-      }),
-      'index.js': 'const bar = "bar"\nmodule.exports =\n  bar\n',
-    },
-  })
-
-  const cwd = resolve(path, 'cwd')
-  const a = `file:${resolve(path, 'diff')}`
-
-  const _cwd = process.cwd()
-  process.chdir(cwd)
-  t.teardown(() => {
-    process.chdir(_cwd)
-  })
-
-  t.resolveMatchSnapshot(
-    diff({ a }), 'should output diff against cwd files')
+t.test('too many args', async t => {
+  const args = ['abbrev@1.0.3', 'abbrev@1.0.4', 'abbrev@1.0.5']
+  await t.rejects(
+    diff(args),
+    /libnpmdiff needs two arguments to compare/,
+    'should output diff against cwd files'
+  )
 })

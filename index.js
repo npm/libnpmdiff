@@ -3,17 +3,20 @@ const pacote = require('pacote')
 const formatDiff = require('./lib/format-diff.js')
 const untar = require('./lib/untar.js')
 
+const argsError = () =>
+  Object.assign(
+    new TypeError('libnpmdiff needs two arguments to compare'),
+    { code: 'EDIFFARGS' }
+  )
 const diff = async (specs, opts = {}) => {
-  const { prefix: path } = opts
+  if (specs.length !== 2)
+    throw argsError()
 
-  const aManifest = await pacote.manifest(specs.a, opts)
-
-  // when using a single argument the spec to compare from is going to be
-  // figured out from reading the current location package
-  if (!specs.b)
-    specs.b = `file:${path || '.'}`
-
-  const bManifest = await pacote.manifest(specs.b, opts)
+  const [
+    aManifest,
+    bManifest,
+  ] =
+    await Promise.all(specs.map(spec => pacote.manifest(spec, opts)))
 
   const versions = {
     a: aManifest.version,

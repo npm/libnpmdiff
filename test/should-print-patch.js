@@ -19,7 +19,7 @@ t.test('invalid filenames', t => {
 
 t.test('using --text/-a option', t => {
   const opts = {
-    diffOpts: { text: true },
+    diffText: true,
   }
   t.ok(shouldPrintPatch('foo.exe', opts))
   t.ok(shouldPrintPatch('./foo.jpg', opts))

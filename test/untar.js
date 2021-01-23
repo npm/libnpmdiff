@@ -57,13 +57,11 @@ t.test('filter files', async t => {
     item,
     prefix: 'a/',
   }, {
-    diffOpts: {
-      files: [
-        './LICENSE',
-        'missing-file',
-        'README.md',
-      ],
-    },
+    diffFiles: [
+      './LICENSE',
+      'missing-file',
+      'README.md',
+    ],
   })
 
   t.matchSnapshot([...files].join('\n'), 'should return list of filenames')
@@ -106,13 +104,11 @@ t.test('filter files using glob expressions', async t => {
     item,
     prefix: 'a/',
   }, {
-    diffOpts: {
-      files: [
-        './lib/**',
-        '*-lock.json',
-        'test\\*', // windows-style sep should be normalized
-      ],
-    },
+    diffFiles: [
+      './lib/**',
+      '*-lock.json',
+      'test\\*', // windows-style sep should be normalized
+    ],
   })
 
   t.matchSnapshot([...files].join('\n'), 'should return list of filenames')
@@ -133,11 +129,9 @@ t.test('filter out all files', async t => {
     item,
     prefix: 'a/',
   }, {
-    diffOpts: {
-      files: [
-        'non-matching-pattern',
-      ],
-    },
+    diffFiles: [
+      'non-matching-pattern',
+    ],
   })
 
   t.equal(files.size, 0, 'should have no files')

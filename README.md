@@ -20,10 +20,10 @@ The registry diff lib.
 ```js
 const libdiff = require('libnpmdiff')
 
-const patch = await libdiff({
-  a: 'abbrev@1.1.0',
-  b: 'abbrev@1.1.1'
-})
+const patch = await libdiff([
+  'abbrev@1.1.0',
+  'abbrev@1.1.1'
+])
 console.log(
   patch
 )
@@ -70,27 +70,27 @@ Happy hacking!
 
 ### API
 
-#### `> libnpmdif({ a, b }, [opts]) -> Promise<String>`
+#### `> libnpmdif([ a, b ], [opts]) -> Promise<String>`
 
 Fetches the registry tarballs and compare files between a spec `a` and spec `b`. **npm** spec types are usually described in `<pkg-name>@<version>` form but multiple other types are alsos supported, for more info on valid specs take a look at [`npm-package-arg`](https://github.com/npm/npm-package-arg).
-
-If only spec `a` is provided, then it's going to try and compare that specified spec against the current project directory in the local file system (cwd may be set via `opts.prefix` option).
 
 **Options**:
 
 - `color <Boolean>`: Should add ANSI colors to string output? Defaults to `false`.
 - `tagVersionPrefix <Sring>`: What prefix should be used to define version numbers. Defaults to `v`
-- `prefix <String>`: The path to use as current working directory if trying to read from local file system when using only a single comparison parameter `a`. Defaults to `.`.
+- `diffContext <Number>`: How many lines of code to print before/after each diff. Defaults to `3`.
+- `diffFiles <Array<String>>`: If set only prints patches for the files listed in this array (also accepts globs). Defaults to `undefined`.
+- `diffIgnoreWhitespace <Boolean>`: Whether or not should ignore changes in whitespace (very useful to avoid indentation changes extra diff lines). Defaults to `false`.
+- `diffNameOnly <Boolean>`: Prints only file names and no patch diffs. Defaults to `false`.
+- `diffNoPrefix <Boolean>`: If true then skips printing any prefixes in filenames. Defaults to `false`.
+- `diffSrcPrefix <String>`: Prefix to be used in the filenames from `a`. Defaults to `a/`.
+- `diffDstPrefix <String>`: Prefix to be used in the filenames from `b`. Defaults to `b/`.
+- `diffText <Boolean>`: Should treat all files as text and try to print diff for binary files. Defaults to `false`.
 - ...`cache`, `registry` and other common options accepted by [pacote](https://github.com/npm/pacote#options)
-- `diffOpts <Object>`: Object containing extra options on how to format the diff patch output:
-  - `context <Number>`: How many lines of code to print before/after each diff. Defaults to `3`.
-  - `files <Array<String>>`: If set only prints patches for the files listed in this array (also accepts globs). Defaults to `undefined`.
-  - `ignoreWhitespace <Boolean>`: Whether or not should ignore changes in whitespace (very useful to avoid indentation changes extra diff lines). Defaults to `false`.
-  - `nameOnly <Boolean>`: Prints only file names and no patch diffs. Defaults to `false`.
-  - `noPrefix <Boolean>`: If true then skips printing any prefixes in filenames. Defaults to `false`.
-  - `srcPrefix <String>`: Prefix to be used in the filenames from `a`. Defaults to `a/`.
-  - `dstPrefix <String>`: Prefix to be used in the filenames from `b`. Defaults to `b/`.
-  - `text <Boolean>`: Should treat all files as text and try to print diff for binary files. Defaults to `false`.
+
+Returns a `Promise` that fullfils with a `String` containing the resulting patch diffs.
+
+Throws an error if either `a` or `b` are missing or if trying to diff more than two specs.
 
 ## LICENSE
 
