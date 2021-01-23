@@ -58,7 +58,7 @@
     "binary-extensions": "^2.2.0",
     "diff": "^5.0.0",
     "minimatch": "^3.0.4",
-    "pacote": "^11.1.14",
+    "pacote": "^11.2.3",
     "tar": "^6.1.0"
   }
 }
