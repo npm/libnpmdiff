@@ -58,6 +58,23 @@ index v1.0.0..v2.0.0 100644
 +d
 `
 
+exports[`test/format-diff.js TAP diffContext=0 > should output no context lines in output 1`] = `
+diff --git a/foo.js b/foo.js
+index v1.0.0..v2.0.0 100644
+--- a/foo.js
++++ b/foo.js
+@@ -3,2 +3,3 @@
+-const b = "b"
+-const c = "c"
++  const b = "b"
++  const c = "c"
++  const d = "d"
+@@ -7,1 +8,2 @@
+-c
++c+
++d
+`
+
 exports[`test/format-diff.js TAP format multiple files patch > should output expected result for multiple files 1`] = `
 diff --git a/foo.js b/foo.js
 index v1.0.0..v1.1.1 100644
