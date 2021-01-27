@@ -15,6 +15,14 @@ a/LICENSE: true
 a/README.md: true
 `
 
+exports[`test/untar.js TAP filter files by exact filename > should return no filenames 1`] = `
+
+`
+
+exports[`test/untar.js TAP filter files by exact filename > should return no filenames 2`] = `
+
+`
+
 exports[`test/untar.js TAP filter files using glob expressions > should return list of filenames 1`] = `
 lib/index.js
 lib/utils/b.js

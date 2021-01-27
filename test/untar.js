@@ -141,6 +141,29 @@ t.test('match files by end of filename', async t => {
   )
 })
 
+t.test('filter files by exact filename', async t => {
+  const item =
+    await pacote.tarball(resolve('./test/fixtures/archive.tgz'))
+
+  const {
+    files,
+    refs,
+  } = await untar({
+    item,
+    prefix: 'a/',
+  }, {
+    diffFiles: [
+      'index.js',
+    ],
+  })
+
+  t.matchSnapshot([...files].join('\n'), 'should return no filenames')
+  t.matchSnapshot(
+    [...refs.entries()].map(([k, v]) => `${k}: ${!!v.content}`).join('\n'),
+    'should return no filenames'
+  )
+})
+
 t.test('match files by simple folder name', async t => {
   const item =
     await pacote.tarball(resolve('./test/fixtures/archive.tgz'))
