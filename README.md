@@ -78,9 +78,9 @@ Fetches the registry tarballs and compare files between a spec `a` and spec `b`.
 
 - `color <Boolean>`: Should add ANSI colors to string output? Defaults to `false`.
 - `tagVersionPrefix <Sring>`: What prefix should be used to define version numbers. Defaults to `v`
-- `diffContext <Number>`: How many lines of code to print before/after each diff. Defaults to `3`.
+- `diffUnified <Number>`: How many lines of code to print before/after each diff. Defaults to `3`.
 - `diffFiles <Array<String>>`: If set only prints patches for the files listed in this array (also accepts globs). Defaults to `undefined`.
-- `diffIgnoreWhitespace <Boolean>`: Whether or not should ignore changes in whitespace (very useful to avoid indentation changes extra diff lines). Defaults to `false`.
+- `diffIgnoreAllSpace <Boolean>`: Whether or not should ignore changes in whitespace (very useful to avoid indentation changes extra diff lines). Defaults to `false`.
 - `diffNameOnly <Boolean>`: Prints only file names and no patch diffs. Defaults to `false`.
 - `diffNoPrefix <Boolean>`: If true then skips printing any prefixes in filenames. Defaults to `false`.
 - `diffSrcPrefix <String>`: Prefix to be used in the filenames from `a`. Defaults to `a/`.

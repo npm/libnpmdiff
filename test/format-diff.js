@@ -352,8 +352,8 @@ t.test('diff options', t => {
       refs,
       versions,
       opts: {
-        diffContext: 1,
-        diffIgnoreWhitespace: true,
+        diffUnified: 1,
+        diffIgnoreAllSpace: true,
         diffSrcPrefix: 'before/',
         diffDstPrefix: 'after/',
       },
@@ -363,7 +363,7 @@ t.test('diff options', t => {
   t.end()
 })
 
-t.test('diffContext=0', t => {
+t.test('diffUnified=0', t => {
   const files = new Set([
     'foo.js',
   ])
@@ -391,7 +391,7 @@ t.test('diffContext=0', t => {
       refs,
       versions,
       opts: {
-        diffContext: 0,
+        diffUnified: 0,
       },
     }),
     'should output no context lines in output'

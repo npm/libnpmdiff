@@ -58,7 +58,7 @@ index v1.0.0..v2.0.0 100644
 +d
 `
 
-exports[`test/format-diff.js TAP diffContext=0 > should output no context lines in output 1`] = `
+exports[`test/format-diff.js TAP diffUnified=0 > should output no context lines in output 1`] = `
 diff --git a/foo.js b/foo.js
 index v1.0.0..v2.0.0 100644
 --- a/foo.js
