@@ -29,6 +29,40 @@ a/package-lock.json: true
 a/test/index.js: true
 `
 
+exports[`test/untar.js TAP match files by end of filename > should return list of filenames 1`] = `
+lib/index.js
+lib/utils/b.js
+test/index.js
+test/utils/b.js
+`
+
+exports[`test/untar.js TAP match files by end of filename > should return map of filenames with valid contents 1`] = `
+a/lib/index.js: true
+a/lib/utils/b.js: true
+a/test/index.js: true
+a/test/utils/b.js: true
+`
+
+exports[`test/untar.js TAP match files by simple folder name > should return list of filenames 1`] = `
+lib/index.js
+lib/utils/b.js
+`
+
+exports[`test/untar.js TAP match files by simple folder name > should return map of filenames with valid contents 1`] = `
+a/lib/index.js: true
+a/lib/utils/b.js: true
+`
+
+exports[`test/untar.js TAP match files by simple folder name variation > should return list of filenames 1`] = `
+test/index.js
+test/utils/b.js
+`
+
+exports[`test/untar.js TAP match files by simple folder name variation > should return map of filenames with valid contents 1`] = `
+a/test/index.js: true
+a/test/utils/b.js: true
+`
+
 exports[`test/untar.js TAP untar package with folders > should have read contents 1`] = `
 module.exports = 'b'
 

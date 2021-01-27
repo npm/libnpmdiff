@@ -3,7 +3,7 @@ const t = require('tap')
 const pacote = require('pacote')
 const untar = require('../lib/untar.js')
 
-t.only('untar simple package', async t => {
+t.test('untar simple package', async t => {
   const item =
     await pacote.tarball(resolve('./test/fixtures/simple-output-2.2.1.tgz'))
 
@@ -108,6 +108,75 @@ t.test('filter files using glob expressions', async t => {
       './lib/**',
       '*-lock.json',
       'test\\*', // windows-style sep should be normalized
+    ],
+  })
+
+  t.matchSnapshot([...files].join('\n'), 'should return list of filenames')
+  t.matchSnapshot(
+    [...refs.entries()].map(([k, v]) => `${k}: ${!!v.content}`).join('\n'),
+    'should return map of filenames with valid contents'
+  )
+})
+
+t.test('match files by end of filename', async t => {
+  const item =
+    await pacote.tarball(resolve('./test/fixtures/archive.tgz'))
+
+  const {
+    files,
+    refs,
+  } = await untar({
+    item,
+    prefix: 'a/',
+  }, {
+    diffFiles: [
+      '*.js',
+    ],
+  })
+
+  t.matchSnapshot([...files].join('\n'), 'should return list of filenames')
+  t.matchSnapshot(
+    [...refs.entries()].map(([k, v]) => `${k}: ${!!v.content}`).join('\n'),
+    'should return map of filenames with valid contents'
+  )
+})
+
+t.test('match files by simple folder name', async t => {
+  const item =
+    await pacote.tarball(resolve('./test/fixtures/archive.tgz'))
+
+  const {
+    files,
+    refs,
+  } = await untar({
+    item,
+    prefix: 'a/',
+  }, {
+    diffFiles: [
+      'lib',
+    ],
+  })
+
+  t.matchSnapshot([...files].join('\n'), 'should return list of filenames')
+  t.matchSnapshot(
+    [...refs.entries()].map(([k, v]) => `${k}: ${!!v.content}`).join('\n'),
+    'should return map of filenames with valid contents'
+  )
+})
+
+t.test('match files by simple folder name variation', async t => {
+  const item =
+    await pacote.tarball(resolve('./test/fixtures/archive.tgz'))
+
+  const {
+    files,
+    refs,
+  } = await untar({
+    item,
+    prefix: 'a/',
+  }, {
+    diffFiles: [
+      './test/',
     ],
   })
 
