@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.0.3
+
+- fix name of options sent by the npm cli
+
+## 2.0.2
+
+- fix matching basename file filter
+
 ## 2.0.1
 
 - fix for tarballs not listing folder names
