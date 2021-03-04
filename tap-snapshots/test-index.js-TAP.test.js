@@ -25,3 +25,91 @@ index v1.0.0..v2.0.0 100644
 +  "version": "2.0.0"
  }
 `
+
+exports[`test/index.js TAP folder in node_modules nested, absolute path > should output expected diff 1`] = `
+diff --git a/package.json b/package.json
+index v2.0.0..v2.0.1 100644
+--- a/package.json
++++ b/package.json
+@@ -1,6 +1,6 @@
+ {
+   "name": "b",
+-  "version": "2.0.0",
++  "version": "2.0.1",
+   "scripts": {
+     "prepare": "node prepare.js"
+   }
+diff --git a/prepare.js b/prepare.js
+index v2.0.0..v2.0.1 100644
+--- a/prepare.js
++++ b/prepare.js
+@@ -1,1 +0,0 @@
+-throw new Error("ERR")
+/ No newline at end of file
+`
+
+exports[`test/index.js TAP folder in node_modules nested, relative path > should output expected diff 1`] = `
+diff --git a/package.json b/package.json
+index v2.0.0..v2.0.1 100644
+--- a/package.json
++++ b/package.json
+@@ -1,6 +1,6 @@
+ {
+   "name": "b",
+-  "version": "2.0.0",
++  "version": "2.0.1",
+   "scripts": {
+     "prepare": "node prepare.js"
+   }
+diff --git a/prepare.js b/prepare.js
+index v2.0.0..v2.0.1 100644
+--- a/prepare.js
++++ b/prepare.js
+@@ -1,1 +0,0 @@
+-throw new Error("ERR")
+/ No newline at end of file
+`
+
+exports[`test/index.js TAP folder in node_modules top-level, absolute path > should output expected diff 1`] = `
+diff --git a/package.json b/package.json
+index v1.0.0..v1.0.1 100644
+--- a/package.json
++++ b/package.json
+@@ -1,6 +1,6 @@
+ {
+   "name": "a",
+-  "version": "1.0.0",
++  "version": "1.0.1",
+   "scripts": {
+     "prepare": "node prepare.js"
+   }
+diff --git a/prepare.js b/prepare.js
+index v1.0.0..v1.0.1 100644
+--- a/prepare.js
++++ b/prepare.js
+@@ -1,1 +0,0 @@
+-throw new Error("ERR")
+/ No newline at end of file
+`
+
+exports[`test/index.js TAP folder in node_modules top-level, relative path > should output expected diff 1`] = `
+diff --git a/package.json b/package.json
+index v1.0.0..v1.0.1 100644
+--- a/package.json
++++ b/package.json
+@@ -1,6 +1,6 @@
+ {
+   "name": "a",
+-  "version": "1.0.0",
++  "version": "1.0.1",
+   "scripts": {
+     "prepare": "node prepare.js"
+   }
+diff --git a/prepare.js b/prepare.js
+index v1.0.0..v1.0.1 100644
+--- a/prepare.js
++++ b/prepare.js
+@@ -1,1 +0,0 @@
+-throw new Error("ERR")
+/ No newline at end of file
+`
